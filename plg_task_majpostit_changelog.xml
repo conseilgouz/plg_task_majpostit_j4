@@ -1,0 +1,26 @@
+<changelogs>
+	<changelog>
+		<element>majpostit</element>
+		<type>plugin</type>
+		<group>task</group>
+		<version>4.0.1</version>
+        <note>
+            <item>09/04/2022</item>
+        </note>
+         <fix>
+            <item>Suppression du plugin system dans la table update_sites</item>
+        </fix>
+	</changelog>
+	<changelog>
+		<element>majpostit</element>
+		<type>plugin</type>
+		<group>task</group>
+		<version>4.0.0</version>
+        <note>
+            <item>08/04/2022</item>
+        </note>
+         <addition>
+            <item>devient un plugin task</item>
+        </addition>
+	</changelog>
+</changelogs>

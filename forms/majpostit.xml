@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<form>
+	<fields name="params">
+		<fieldset name="task_params">
+				<field name="typecal" type="radio" class="btn-group"
+				   label="type de calendrier"
+				   default="jevents"
+				   description="Sélectionner le type de calendrier JEvents ou DPCalendar">
+   					<option value="jevents">JEvents</option>
+					<option value="dpcalendar">DPCalendar</option>
+   					<option value="cgresa">CG Resa</option>
+				</field>
+				<field showon="typecal:jevents"
+				name="postits" type = "sql"
+				label="Module(s) post-it"
+				description="Modules post-it à mettre à jour par rapport aux catégories d'événements"
+				query="SELECT TRIM(LEADING 'post-it ' FROM m.title) as value, m.title from #__modules as m  
+					   left join #__categories c on c.alias = TRIM(LEADING 'post-it ' FROM m.title)
+					    where m.module like 'mod_postit' AND m.published > 0 AND c.extension = 'com_jevents'"
+				key_field="value"
+				value_field="title"
+				multiple="multiple"
+						/>
+				<field showon="typecal:jevents" name="menupath" type = "sql"
+				label="Menu JEvents"
+				description="Menu JEvents (utilisé pour la création des liens dans les post-it)"
+				query="SELECT path as value, title from #__menu where link like '%index.php?option=com_jevents%' AND link like '%view%'"
+				key_field="value"
+				value_field="title"
+						/>
+				<field name="cgresamenu" showon="typecal:cgresa"   type="menuitem"  label="Selection menu" description="Sélectionner un menu à associer aux événements CG Resa.">
+				<option	value="">JSELECT</option>
+				</field>
+				<field showon="typecal:dpcalendar"
+				name="postitsdp" type = "sql"
+				label="Module(s) post-it"
+				description="Modules post-it à mettre à jour par rapport aux catégories d'événements"
+				
+				query="SELECT TRIM(LEADING 'post-it ' FROM m.title) as value, m.title from #__modules as m  
+					   left join #__categories c on c.alias = TRIM(LEADING 'post-it ' FROM m.title)
+					    where m.module like 'mod_postit' AND m.published > 0 AND c.extension = 'com_dpcalendar'"
+				key_field="value"
+				value_field="title"
+				multiple="multiple"
+						/>
+				<field showon="typecal:dpcalendar" name="menupathdp" type = "sql"
+				label="Menu DPCalendar"
+				description="Menu DPCalendar (utilisé pour la création des liens dans les post-it)"
+				query="SELECT path as value, title from #__menu where link like '%index.php?option=com_dpcalendar%' AND link like '%view%'"
+				key_field="value"
+				value_field="title"
+				multiple="multiple"
+						/>
+				<field showon="typecal:cgresa"
+				name="postitcg" type = "sql"
+				label="Module(s) post-it"
+				description="Modules post-it à mettre à jour par rapport à CG Resa"
+				query="SELECT TRIM(LEADING 'post-it ' FROM m.title) as value, m.title from #__modules as m  
+					   where m.module like 'mod_postit' AND m.published > 0 AND m.title like '%cgresa%'"
+				key_field="value"
+				value_field="title"
+				multiple="multiple"
+						/>
+				<field showon="typecal!:cgresa" name="typeaff" type="radio" class="btn-group"
+				   label="type d'affichage"
+				   default="title"
+				   description="Sélectionner le contenu du message à afficher, soit à partir du titre soit la 1ere ligne de la description de l'événement">
+   					<option value="title">Titre</option>
+					<option value="desc">Description (1ere ligne)</option>
+				</field>
+		</fieldset>
+	</fields>
+</form>
