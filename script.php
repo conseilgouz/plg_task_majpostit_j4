@@ -1,17 +1,18 @@
 <?php
 /**
-* Maj Postit Plugin  - Joomla 4.0.1 Plugin 
-* Version			: 1.0.0
-* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
+* Maj Postit Plugin  - Joomla 4.x/5.x Plugin 
+* Version			: 4.1.0
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 */
 // No direct access to this file
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\Filesystem\Folder;
+use Joomla\Filesystem\Folder;
 use Joomla\CMS\Version;
-use Joomla\CMS\Filesystem\File;
+use Joomla\Filesystem\File;
+use Joomla\CMS\Log\Log;
 
 class plgtaskMajPostitInstallerScript
 {
@@ -22,6 +23,7 @@ class plgtaskMajPostitInstallerScript
 	private $extname                 = 'majpostit';
 	private $previous_version        = '';
 	private $dir           = null;
+	private $lang;
 	private $installerName = 'plgtaskmajpostitinstaller';
 	public function __construct()
 	{
@@ -81,9 +83,9 @@ class plgtaskMajPostitInstallerScript
 	        $db->execute();
         }
         catch (RuntimeException $e) {
-            JLog::add('unable to enable plugin majpostit', JLog::ERROR, 'jerror');
+            Log::add('unable to enable plugin majpostit', Log::ERROR, 'jerror');
         }
-		// disable system goakeeba plugin
+		// disable system majpostit plugin
         $conditions = array(
             $db->qn('type') . ' = ' . $db->q('plugin'),
 			$db->qn('folder') . ' = ' . $db->q('system'),
@@ -98,7 +100,7 @@ class plgtaskMajPostitInstallerScript
 	        $db->execute();
         }
         catch (RuntimeException $e) {
-            JLog::add('unable to disable plugin majpostit', JLog::ERROR, 'jerror');
+            Log::add('unable to disable plugin majpostit', Log::ERROR, 'jerror');
         }
         $conditions = array(
             $db->qn('type') . ' = ' . $db->q('plugin'),
@@ -114,7 +116,7 @@ class plgtaskMajPostitInstallerScript
 	        $db->execute();
         }
         catch (RuntimeException $e) {
-            JLog::add('unable to enable plugin majpostit', JLog::ERROR, 'jerror');
+            Log::add('unable to enable plugin majpostit', Log::ERROR, 'jerror');
         }
 		// delete #__update_sites (keep showing update even if system majpostit is dissabled)
         $query = $db->getQuery(true);
@@ -139,9 +141,22 @@ class plgtaskMajPostitInstallerScript
 	        $db->execute();
         }
         catch (RuntimeException $e) {
-            JLog::add('unable to enable plugin majpostit', JLog::ERROR, 'jerror');
+            Log::add('unable to enable plugin majpostit', Log::ERROR, 'jerror');
         }
-		
+				// remove obsolete update sites
+		$db = Factory::getDbo();
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%432473037d.url-de-test.ws/%"');
+		$db->setQuery($query);
+		$db->execute();
+		// Simple Isotope is now on Github
+		$query = $db->getQuery(true)
+			->delete('#__update_sites')
+			->where($db->quoteName('location') . ' like "%conseilgouz.com/updates/plg_task_majpostit%"');
+		$db->setQuery($query);
+		$db->execute();
+
 	}
 
 	// Check if Joomla version passes minimum requirement
@@ -179,7 +194,7 @@ class plgtaskMajPostitInstallerScript
 	}
 	private function uninstallInstaller()
 	{
-		if ( ! JFolder::exists(JPATH_PLUGINS . '/system/' . $this->installerName)) {
+		if ( ! is_dir(JPATH_PLUGINS . '/system/' . $this->installerName)) {
 			return;
 		}
 		$this->delete([

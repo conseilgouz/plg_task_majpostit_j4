@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <form>
 	<fields name="params">
-		<fieldset name="task_params">
+		<fieldset name="task_params" addfieldprefix="ConseilGouz\Plugin\Task\Majpostit\Field">
+				<field name="version" type="version"  margintop="-3em"  extension="majpostit" />
 				<field name="typecal" type="radio" class="btn-group"
 				   label="type de calendrier"
 				   default="jevents"

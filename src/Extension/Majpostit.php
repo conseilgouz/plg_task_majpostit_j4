@@ -1,12 +1,12 @@
 <?php
 /** MajPostit Task
-* Version			: 1.0.0
+* Version			: 4.1.0
 * Package			: Joomla 4.1
-* copyright 		: Copyright (C) 2022 ConseilGouz. All rights reserved.
+* copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 *
 */
-
+namespace ConseilGouz\Plugin\Task\Majpostit\Extension;
 defined('_JEXEC') or die;
 use Joomla\CMS\Factory;
 use Joomla\Registry\Registry;
@@ -22,7 +22,7 @@ use Joomla\Component\Scheduler\Administrator\Traits\TaskPluginTrait;
 use Joomla\Event\SubscriberInterface;
 use ConseilGouz\Component\CGResa\Site\Controller\ResaController;
 
-class PlgTaskMajPostit extends CMSPlugin implements SubscriberInterface
+class Majpostit extends CMSPlugin implements SubscriberInterface
 {
 		use TaskPluginTrait;
 

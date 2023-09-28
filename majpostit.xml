@@ -2,15 +2,18 @@
 <extension version="4.1" type="plugin" group="task" method="upgrade">
 	<name>plugin Task Maj Postit</name>
 	<author>conseilgouz</author>
-	<creationDate>2022 April</creationDate>
-	<copyright>Copyright (C) 2022 ConseilGouz. All rights reserved.</copyright>
+	<creationDate>2023-09-28 April</creationDate>
+	<copyright>Copyright (C) 2023 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>4.0.1</version>
+	<version>4.1.0</version>
 	<description>PLG_TASK_MAJPOSTIT_DESC</description>
+	<namespace path="src">ConseilGouz\Plugin\Task\Majpostit</namespace>	
 	<files>
-		<filename plugin="majpostit">majpostit.php</filename>
+		<folder plugin="majpostit">services</folder>
+		<filename>majpostit.xml</filename>
+		<folder>src</folder>
 		<folder>forms</folder>		
 	</files>
     <languages>
@@ -18,10 +21,8 @@
 		<language tag="fr-FR">language/fr-FR/plg_task_majpostit.sys.ini</language>
 	</languages>
 	<scriptfile>script.php</scriptfile>	
-	<changelogurl>https://www.conseilgouz.com/updates/plg_task_majpostit_changelog.xml</changelogurl>
-	
+	<changelogurl>https://raw.githubusercontent.com/conseilgouz/plg_task_majpostit_j4/master/plg_task_majpostit_changelog.xml</changelogurl>
   <updateservers>
-    <server type="extension" name="task majpostit" priority="1">https://www.conseilgouz.com/updates/plg_task_majpostit_update.xml</server>
+    <server type="extension" name="task majpostit" priority="1">https://raw.githubusercontent.com/conseilgouz/updates_github/master/plg_task_majpostit_update.xml</server>
    </updateservers>
-	
 </extension>
