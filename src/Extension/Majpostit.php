@@ -82,7 +82,7 @@ class Majpostit extends CMSPlugin implements SubscriberInterface
 		$query = $db->getQuery(true);
 		$query->select("id, params")
 		->from("#__modules")
-		->where("module like 'mod_postit' AND title like CONCAT('post-it ','" . $st_type."','%') AND published > 0;");
+		->where("module IN ('mod_postit','mod_cg_memo') AND title like CONCAT('post-it ','" . $st_type."','%') AND published > 0;");
 		$db->setQuery($query);
 		$result = $db->loadAssocList();
 		foreach ($result as $res) {

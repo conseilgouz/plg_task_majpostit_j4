@@ -30,8 +30,9 @@ return new class () implements ServiceProviderInterface {
         $container->set(
             PluginInterface::class,
             function (Container $container) {
+				$dispatcher = $container->get(DispatcherInterface::class);
                 $plugin     = new Majpostit(
-                    $container->get(DispatcherInterface::class),
+                    $dispatcher,
                     (array) PluginHelper::getPlugin('task', 'majpostit')
                 );
                 $plugin->setApplication(Factory::getApplication());
