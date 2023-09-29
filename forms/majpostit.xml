@@ -2,7 +2,7 @@
 <form>
 	<fields name="params">
 		<fieldset name="task_params" addfieldprefix="ConseilGouz\Plugin\Task\Majpostit\Field">
-				<field name="version" type="version"  margintop="-3em"  extension="majpostit" />
+				<field name="version" type="version"  margintop="-2em"  extension="majpostit" />
 				<field name="typecal" type="radio" class="btn-group"
 				   label="type de calendrier"
 				   default="jevents"
@@ -36,7 +36,6 @@
 				name="postitsdp" type = "sql"
 				label="Module(s) post-it"
 				description="Modules post-it à mettre à jour par rapport aux catégories d'événements"
-				
 				query="SELECT TRIM(LEADING 'post-it ' FROM m.title) as value, m.title from #__modules as m  
 					   left join #__categories c on c.alias = TRIM(LEADING 'post-it ' FROM m.title)
 					    where m.module like 'mod_postit' AND m.published > 0 AND c.extension = 'com_dpcalendar'"
@@ -55,9 +54,9 @@
 				<field showon="typecal:cgresa"
 				name="postitcg" type = "sql"
 				label="Module(s) post-it"
-				description="Modules post-it à mettre à jour par rapport à CG Resa"
+				description="Modules post-it/cg memo (dont le titre contient 'post-it cgresa') à mettre à jour par rapport à CG Resa"
 				query="SELECT TRIM(LEADING 'post-it ' FROM m.title) as value, m.title from #__modules as m  
-					   where m.module like 'mod_postit' AND m.published > 0 AND m.title like '%cgresa%'"
+					   where m.module in ('mod_postit','mod_cg_memo') AND m.published > 0 AND m.title like '%cgresa%'"
 				key_field="value"
 				value_field="title"
 				multiple="multiple"
