@@ -3,6 +3,18 @@
 		<element>majpostit</element>
 		<type>plugin</type>
 		<group>task</group>
+		<version>4.2.1</version>
+        <note>
+            <item>13/10/2023</item>
+        </note>
+        <change>
+            <item>Handle CG Memo module</item>
+        </change>
+	</changelog>
+	<changelog>
+		<element>majpostit</element>
+		<type>plugin</type>
+		<group>task</group>
 		<version>4.2.0</version>
         <note>
             <item>29/09/2023</item>
