@@ -1,7 +1,7 @@
 <?php
 /**
 * Maj Postit Plugin  - Joomla 4.x/5.x Plugin 
-* Version			: 4.1.0
+* Version			: 4.2.2
 * copyright 		: Copyright (C) 2023 ConseilGouz. All rights reserved.
 * license    		: http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 */
@@ -17,7 +17,7 @@ use Joomla\CMS\Log\Log;
 class plgtaskMajPostitInstallerScript
 {
 	private $min_joomla_version      = '4.1.0';
-	private $min_php_version         = '7.2';
+	private $min_php_version         = '7.4';
 	private $name                    = 'Plugin Maj Postit';
 	private $exttype                 = 'plugin';
 	private $extname                 = 'majpostit';
@@ -118,7 +118,7 @@ class plgtaskMajPostitInstallerScript
         catch (RuntimeException $e) {
             Log::add('unable to enable plugin majpostit', Log::ERROR, 'jerror');
         }
-		// delete #__update_sites (keep showing update even if system majpostit is dissabled)
+		// delete #__update_sites (keep showing update even if system majpostit is disabled)
         $query = $db->getQuery(true);
 		$query->select('site.update_site_id')
 		->from($db->quoteName('#__extensions','ext'))

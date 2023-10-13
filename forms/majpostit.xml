@@ -16,7 +16,7 @@
 				label="Module(s) post-it"
 				description="Modules post-it à mettre à jour par rapport aux catégories d'événements"
 				query="SELECT TRIM(LEADING 'post-it ' FROM m.title) as value, m.title from #__modules as m  
-					   left join #__categories c on c.alias = TRIM(LEADING 'post-it ' FROM m.title)
+					   left join #__categories c on c.alias = LOWER(TRIM(LEADING 'post-it ' FROM m.title))
 					    where m.module in ('mod_postit','mod_cg_memo') AND m.published > 0 AND c.extension = 'com_jevents'"
 				key_field="value"
 				value_field="title"
@@ -37,7 +37,7 @@
 				label="Module(s) post-it"
 				description="Modules post-it à mettre à jour par rapport aux catégories d'événements"
 				query="SELECT TRIM(LEADING 'post-it ' FROM m.title) as value, m.title from #__modules as m  
-					   left join #__categories c on c.alias = TRIM(LEADING 'post-it ' FROM m.title)
+					   left join #__categories c on c.alias = LOWER(TRIM(LEADING 'post-it ' FROM m.title))
 					    where m.module in ('mod_postit','mod_cg_memo') AND m.published > 0 AND c.extension = 'com_dpcalendar'"
 				key_field="value"
 				value_field="title"
