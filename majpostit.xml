@@ -2,12 +2,12 @@
 <extension version="4.1" type="plugin" group="task" method="upgrade">
 	<name>plugin Task Maj Postit</name>
 	<author>conseilgouz</author>
-	<creationDate>2023-10-13</creationDate>
-	<copyright>Copyright (C) 2023 ConseilGouz. All rights reserved.</copyright>
+	<creationDate>2025-09-10</creationDate>
+	<copyright>Copyright (C) 2025 ConseilGouz. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>pascal.leconte@conseilgouz.com</authorEmail>
 	<authorUrl>www.conseilgouz.com</authorUrl>
-	<version>4.2.2</version>
+	<version>4.3.0</version>
 	<description>PLG_TASK_MAJPOSTIT_DESC</description>
 	<namespace path="src">ConseilGouz\Plugin\Task\Majpostit</namespace>	
 	<files>
